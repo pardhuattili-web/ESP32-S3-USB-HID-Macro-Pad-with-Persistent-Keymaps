@@ -1,3 +1,6 @@
+#ifdef NDEBUG
+#undef NDEBUG
+#endif
 #include "macro_keymap.h"
 
 #include <assert.h>
