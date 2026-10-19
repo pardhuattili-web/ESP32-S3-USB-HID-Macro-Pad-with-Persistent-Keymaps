@@ -33,6 +33,7 @@ static void test_action_validation(void)
     macro_action_t action = { .modifiers = MACRO_MOD_LCTRL, .key_count = 1U, .keys = { 0x06U } };
     macro_keymap_defaults(&map);
     assert(macro_keymap_set_action(&map, 1U, 3U, &action) == MACRO_KEYMAP_OK);
+    assert(macro_keymap_set_active_profile(&map, 1U) == MACRO_KEYMAP_OK);
     assert(macro_keymap_get_action(&map, 3U)->keys[0] == 0x06U);
     assert(macro_keymap_set_action(&map, 3U, 0U, &action) == MACRO_KEYMAP_INVALID_PROFILE);
     assert(macro_keymap_set_action(&map, 0U, 4U, &action) == MACRO_KEYMAP_INVALID_BUTTON);
