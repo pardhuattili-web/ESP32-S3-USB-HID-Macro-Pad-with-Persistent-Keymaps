@@ -2,7 +2,6 @@
 
 #include <assert.h>
 #include <stdio.h>
-#include <string.h>
 
 static void test_defaults_are_valid(void)
 {
