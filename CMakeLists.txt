@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.16)
+project(esp32_s3_macro_pad_core C)
+
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_C_EXTENSIONS OFF)
+
+add_library(macro_keymap STATIC src/macro_keymap.c)
+target_include_directories(macro_keymap PUBLIC include)
+if(CMAKE_C_COMPILER_ID MATCHES "GNU|Clang")
+  target_compile_options(macro_keymap PRIVATE -Wall -Wextra -Wpedantic -Werror)
+endif()
+
+enable_testing()
+add_executable(test_macro_keymap tests/test_macro_keymap.c)
+target_link_libraries(test_macro_keymap PRIVATE macro_keymap)
+if(CMAKE_C_COMPILER_ID MATCHES "GNU|Clang")
+  target_compile_options(test_macro_keymap PRIVATE -Wall -Wextra -Wpedantic -Werror)
+endif()
+add_test(NAME macro_keymap_tests COMMAND test_macro_keymap)
